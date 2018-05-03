@@ -2,6 +2,7 @@ package com.wd.samples;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -14,16 +15,24 @@ public class SampleTest {
 	 * @throws InterruptedException
 	 */
 	public static void main(String[] args) throws InterruptedException {
-		SessionId session;
+		final Logger logger = Logger.getLogger(SampleTest.class);
+		// SessionId session;
 		// Setting the location of the Internet Explorer driver in the system
 		// properties
-//		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+		// System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 		System.setProperty("webdriver.gecko.driver", "drivers/geckodriver.exe");
-//		WebDriver webDriver = new ChromeDriver();
+		// WebDriver webDriver = new ChromeDriver();
 		WebDriver webDriver = new FirefoxDriver();
 
-		session = ((FirefoxDriver) webDriver).getSessionId();
+		SessionId session = ((FirefoxDriver) webDriver).getSessionId();
 		System.out.println("Session id: " + session.toString());
+		logger.info("session id is-------: " + session.toString());
+		try {
+			int i = 10;
+			i = i / 0;
+		} catch (ArithmeticException e) {
+			logger.error("asd", e);
+		}
 
 		// Setting the browser size
 		webDriver.manage().window().setSize(new Dimension(1024, 768));
@@ -50,18 +59,19 @@ public class SampleTest {
 		Thread.sleep(7000);
 
 		// Closing the browser and webdriver
-		
+
 		try {
 			session = ((FirefoxDriver) webDriver).getSessionId();
 			System.out.println("Session id: " + session.toString());
-			webDriver.quit();
+//			webDriver.quit();
 			Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
 			Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			Runtime.getRuntime().exec("taskkill /F /IM firefox.exe");
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		
 	}
 }
