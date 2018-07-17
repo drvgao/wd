@@ -2,7 +2,8 @@
 <suite name="Suite" parallel="false">
   <test name="Test">
     <classes>
-      <class name="com.wd.samples.NavigatorTest2"/>
+      <class name="com.wd.samples.LocalRemoteWebDriver"/>
+      <class name="com.wd.samples.LocalRemoteWebDriver2"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

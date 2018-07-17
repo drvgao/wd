@@ -4,6 +4,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 
+/**
+ * check is angular completed or not.
+ * @author RDURGAM
+ *
+ */
 public class AdditionalConditions {
 	 public static ExpectedCondition<Boolean> angularHasFinishedProcessing() {
 	        return new ExpectedCondition<Boolean>() {
